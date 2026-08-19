@@ -27,6 +27,10 @@ Short codes are generated from [a-zA-Z0-9].
 
 ## Build
 
+## Build
+
+```bash
 cmake -S . -B build
 cmake --build build
 ./build/url_shortener
+```
