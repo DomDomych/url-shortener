@@ -7,11 +7,11 @@
 class UrlShortener
 {
   private:
-    AVLTree<std::string, std::string> CodeToUrl;
-    AVLTree<std::string, std::string> UrlToCode;
+    AVLTree<std::string, std::string> code_to_url_;
+    AVLTree<std::string, std::string> url_to_code_;;
 
-    int count;
-    int maxlength;
+    int count_;
+    int maxlength_;
     std::string gencode(int number);
 
   public:
