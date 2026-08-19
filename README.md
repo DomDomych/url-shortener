@@ -29,4 +29,4 @@ Short codes are generated from [a-zA-Z0-9].
 
 cmake -S . -B build
 cmake --build build
-./build/UrlShortener
+./build/url__shortener
