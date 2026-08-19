@@ -4,10 +4,9 @@
 #include <string>
 #include <vector>
 
-template <typename Key, typename Value>
-class AVLTreeBase
+template <typename Key, typename Value> class AVLTreeBase
 {
-protected:
+  protected:
     struct Node
     {
         Key key;
@@ -16,18 +15,15 @@ protected:
         Node *right;
         unsigned int h;
         int count;
-        Node(const Key &key, const Value &value) : key(key),
-                                                   value(value),
-                                                   left(nullptr),
-                                                   right(nullptr),
-                                                   h(1),
-                                                   count(0)
-                                                   {}
+        Node(const Key &key, const Value &value)
+            : key(key), value(value), left(nullptr), right(nullptr), h(1), count(0)
+        {
+        }
         ~Node() = default;
     };
     Node *root;
 
-        unsigned int height(Node *p)
+    unsigned int height(Node *p)
     {
         return p ? p->h : 0;
     }
@@ -107,7 +103,7 @@ protected:
         return balance(p);
     }
 
-        Node *find(Node *p, const Key &key) const
+    Node *find(Node *p, const Key &key) const
     {
         if (!p)
         {
@@ -204,25 +200,25 @@ protected:
         print(p->right, number);
     }
 
-    AVLTreeBase():root(nullptr){}
+    AVLTreeBase() : root(nullptr) {}
     ~AVLTreeBase()
     {
         clear(root);
     }
 };
 
-template<typename Key,typename Value>
-class AVLTreeCommon : public AVLTreeBase<Key,Value>
+template <typename Key, typename Value> class AVLTreeCommon : public AVLTreeBase<Key, Value>
 {
 
-    using Node = typename AVLTreeBase<Key,Value>::Node;
-    public:
+    using Node = typename AVLTreeBase<Key, Value>::Node;
+
+  public:
     bool remove(const Key &key)
     {
         if (!this->find(this->root, key))
             return false;
 
-        this->root = AVLTreeBase<Key,Value>::remove(this->root, key);
+        this->root = AVLTreeBase<Key, Value>::remove(this->root, key);
         return true;
     }
 
@@ -270,7 +266,7 @@ class AVLTreeCommon : public AVLTreeBase<Key,Value>
     void print() const
     {
         int number = 1;
-        AVLTreeBase<Key,Value>::print(this->root, number);
+        AVLTreeBase<Key, Value>::print(this->root, number);
     }
 
     void increment(const Key &key)
@@ -281,30 +277,24 @@ class AVLTreeCommon : public AVLTreeBase<Key,Value>
         {
             found->count++;
         }
-
     }
 };
 
-template <typename Key, typename Value>
-class AVLTree:public AVLTreeCommon<Key,Value>
+template <typename Key, typename Value> class AVLTree : public AVLTreeCommon<Key, Value>
 {
-public:
-
+  public:
     AVLTree() = default;
     AVLTree(const AVLTree &) = delete;
     AVLTree &operator=(const AVLTree &) = delete;
 };
 
 // Specialization for std::string
-template <>
-class AVLTree<std::string, std::string>: public AVLTreeCommon<std::string,std::string>
+template <> class AVLTree<std::string, std::string> : public AVLTreeCommon<std::string, std::string>
 {
 
-using Node = typename AVLTreeBase<std::string,std::string>::Node; 
+    using Node = typename AVLTreeBase<std::string, std::string>::Node;
 
-
-private:
-
+  private:
     std::vector<int> prefixfunction(const std::string &s) const
     {
         std::vector<int> pi(s.size(), 0);
@@ -353,8 +343,9 @@ private:
         }
         return false;
     }
-    
-    void find_by_word(Node *p, const std::string &word, std::vector<std::pair<std::string, std::string>> &found) const
+
+    void find_by_word(Node *p, const std::string &word,
+                      std::vector<std::pair<std::string, std::string>> &found) const
     {
         if (!p)
             return;
@@ -366,8 +357,7 @@ private:
         find_by_word(p->right, word, found);
     }
 
-public:
-
+  public:
     std::vector<std::pair<std::string, std::string>> find_by_word(const std::string &word) const
     {
         std::vector<std::pair<std::string, std::string>> found;

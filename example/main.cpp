@@ -1,6 +1,6 @@
+#include "url_shortener.hpp"
 #include <iostream>
 #include <vector>
-#include "UrlShortener.hpp"
 
 int main()
 {
@@ -8,8 +8,10 @@ int main()
 
     std::cout << "1. Добавление ссылок\n";
 
-    std::string code1 = shortener.shorten("https://github.com/DomDomych/Stkn_Alg_Fourth_Lab/tree/develop");
-    std::string code2 = shortener.shorten("https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main");
+    std::string code1 =
+        shortener.shorten("https://github.com/DomDomych/Stkn_Alg_Fourth_Lab/tree/develop");
+    std::string code2 =
+        shortener.shorten("https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main");
     std::string code3 = shortener.shorten("https://music.yandex.ru/artist/1582874");
 
     std::cout << "Код 1: " << code1 << '\n';
@@ -19,9 +21,9 @@ int main()
     std::cout << "\n2. Повторное добавление той же ссылки\n";
 
     std::string repeatedCode = shortener.shorten("https://music.yandex.ru/artist/1582874");
-    if(repeatedCode == code3)
+    if (repeatedCode == code3)
     {
-    std::cout << "Повторная ссылка вернула старый код: " << repeatedCode << '\n';
+        std::cout << "Повторная ссылка вернула старый код: " << repeatedCode << '\n';
     }
     else
     {
@@ -38,8 +40,8 @@ int main()
     {
         std::cout << "Код " << code2 << " существует\n";
     }
-    
-    if(!shortener.contains("Dom_Dom"))
+
+    if (!shortener.contains("Dom_Dom"))
     {
         std::cout << "Код Dom_Dom не найден";
     }
@@ -58,7 +60,7 @@ int main()
 
     std::cout << "\n7. Поиск ссылок, содержащих слово 'github'\n";
 
-    std::vector<std::pair<std::string,std::string>> found = shortener.find_by_word("github");
+    std::vector<std::pair<std::string, std::string>> found = shortener.find_by_word("github");
 
     if (found.empty())
     {
@@ -66,7 +68,7 @@ int main()
     }
     else
     {
-        for (const std::pair <std::string,std::string> &item : found)
+        for (const std::pair<std::string, std::string> &item : found)
         {
             std::cout << item.first << " -> " << item.second << '\n';
         }
@@ -74,7 +76,9 @@ int main()
 
     std::cout << "\n8. Обратный поиск: код по длинной ссылке\n";
 
-    std::cout << "https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main -> "<<shortener.getcodebyUrl("https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main") << '\n';
+    std::cout << "https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main -> "
+              << shortener.getcodebyUrl("https://github.com/DomDomych/Stkn_Alg_Third_Lab/tree/main")
+              << '\n';
 
     std::cout << "\n9. Изменение длинной ссылки для существующего кода\n";
 
