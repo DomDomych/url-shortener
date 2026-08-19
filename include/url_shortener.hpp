@@ -8,7 +8,7 @@ class UrlShortener
 {
   private:
     AVLTree<std::string, std::string> code_to_url_;
-    AVLTree<std::string, std::string> url_to_code_;;
+    AVLTree<std::string, std::string> url_to_code_;
 
     int count_;
     int maxlength_;
